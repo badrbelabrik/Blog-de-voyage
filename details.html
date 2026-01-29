@@ -1,64 +1,102 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Details</title>
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+        crossorigin="anonymous" referrerpolicy="no-referrer">
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 </head>
+
 <body>
-    <header class="flex items-center justify-between px-4 md:px-8 py-3 bg-white border-b border-gray-200 sticky top-0">
-        <button aria-label="Open navigation menu" class="p-2 hover:bg-gray-100 rounded-lg cursor-pointer" id="mobile-menu-button">
+    <header
+        class="flex items-center justify-between px-4 md:px-8 py-3 bg-white border-b border-gray-200 sticky top-0 md:hidden">
+        <button aria-label="Open navigation menu" class="p-2 hover:bg-gray-100 rounded-lg cursor-pointer md:hidden"
+            id="mobile-menu-button">
             <i class="fa-solid fa-bars text-xl"></i>
         </button>
         <img src="images/logo.png" class="h-10">
-        <button aria-label="Open search bar" class="p-2 hover:bg-gray-100 rounded-lg cursor-pointer" id="mobile-menu-button">
+        <button aria-label="Open search bar" class="p-2 hover:bg-gray-100 rounded-lg cursor-pointer md:hidden"
+            id="mobile-menu-button">
             <i class="fa-solid fa-magnifying-glass"></i>
         </button>
     </header>
-    <main class="h-screen flex flex-col sticky">
-        <div class="h-1/3 gap-4 bg-[url('images/yellow-river.jpg')] bg-cover  text-white">
-            <div class="flex flex-col h-full justify-end p-4">
-                <h2 class="font-bold text-lg">Yellow river</h2>
-                <div class="flex gap-2">
-                    <p class="text-sm">by Ian Jacobson</p>
+    <main class="h-screen flex flex-col md:m-4 md:py-4 md:flex-row md:justify-center">
+        <div class="hidden md:h-full md:flex flex-col md:w-1/6 justify-center px-4 gap-10 bg-gray-100 rounded-r-2xl fixed left-0">
+            <div class="flex gap-2 items-center">
+                <i class="fa-solid fa-house text-3xl"></i>
+                <h1 class="font-bold">Home</h1>
+            </div>
+
+            <div class="flex gap-2 items-center">
+                <i class="fa-solid fa-magnifying-glass text-3xl"></i>
+                <h1 class="font-bold">Search</h1>
+            </div>
+
+
+            <div class="flex gap-2 items-center">
+                <i class="fa-solid fa-location-dot text-3xl"></i>
+                <h1 class="font-bold">Location</h1>
+            </div>
+
+            <div class="flex gap-2 items-center">
+                <i class="fa-solid fa-heart text-3xl"></i>
+                <h1 class="font-bold">Notifications</h1>
+            </div>
+
+            <div class="flex gap-2 items-center">
+                <i class="fa-solid fa-user text-3xl"></i>
+                <h1 class="font-bold">Profile</h1>
+            </div>
+        </div>
+        <div class="flex flex-col md:w-4/6">
+            <div class="h-1/2 gap-4 bg-[url('images/yellow-river.jpg')] bg-cover md:rounded-2xl text-white">
+                <div class="flex flex-col h-full justify-end p-4">
+                    <h2 class="font-bold text-lg">Yellow river</h2>
+                    <div class="flex gap-2">
+                        <p class="text-sm">by Ian Jacobson</p>
                         <div class="flex items-center gap-1">
-                        <i class="fa-solid fa-location-crosshairs"></i> <span>China</span>
-                        </div>
-                </div>
-                    <div class="flex items-center gap-4 text-sm mt-2 justify-between">
-                        <div class="flex items-center gap-1">
-                        <i class="fa-regular fa-clock"></i> <span>15 min</span>
-                        </div>
-                        <div class="flex items-end gap-1">
-                        <i class="fa-regular fa-eye"></i> <span>12k</span>
+                            <i class="fa-solid fa-location-crosshairs"></i> <span>China</span>
                         </div>
                     </div>
+                    <div class="flex items-center gap-4 text-sm mt-2 justify-between">
+                        <div class="flex items-center gap-1">
+                            <i class="fa-regular fa-clock"></i> <span>15 min</span>
+                        </div>
+                        <div class="flex items-end gap-1">
+                            <i class="fa-regular fa-eye"></i> <span>12k</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="h-1/2 flex flex-col gap-4 items-center p-4">
+                <div class="flex gap-2 justify-evenly">
+                    <h1>Lets begin to read</h1>
+                    <h2>End</h2>
+                </div>
+                <p>The Yellow River, or "Huang He," is not just a river;
+                    it's a living testament to China's rich history and
+                    cultural heritage. Spanning over 5,400 kilometers.
+                    My journey along this iconic river offered a perfect
+                    blend of natural wonders, cultural experiences, and
+                    awe-inspiring moments.
+                    From the serene alpine meadows at its source in
+                    Qinghai Province to the thunderous Hukou Waterfall ....</p>
             </div>
         </div>
-        <div class="h-2/3 flex flex-col gap-4 items-center p-4">
-            <div class="flex gap-2 justify-evenly">
-                <h1>Lets begin to read</h1>
-                <h2>End</h2>
-            </div>
-            <p>The Yellow River, or "Huang He," is not just a river;
-                it's a living testament to China's rich history and 
-                cultural heritage. Spanning over 5,400 kilometers.
-                My journey along this iconic river offered a perfect 
-                blend of natural wonders, cultural experiences, and 
-                awe-inspiring moments.
-                From the serene alpine meadows at its source in 
-                Qinghai Province to the thunderous Hukou Waterfall ....</p>
-        </div>
+
     </main>
     <!-- NAVBAR -->
-    <div class="flex gap-6 h-16 px-4 justify-between items-center shadow-[0_-6px_12px_rgba(0,0,0,0.15)]  rounded-xl bg-white sticky bottom-0">
-            <i class="fa-solid fa-house text-blue-950 text-2xl"></i>
-            <i class="fa-solid fa-location-dot text-blue-950 text-2xl"></i>
-            <i class="fa-solid fa-heart text-blue-950 text-2xl"></i>
-            <i class="fa-solid fa-user text-blue-950 text-2xl"></i>
+    <div
+        class="flex gap-6 h-16 px-4 justify-between items-center shadow-[0_-6px_12px_rgba(0,0,0,0.15)]  rounded-xl bg-white sticky bottom-0 md:hidden">
+        <i class="fa-solid fa-house text-blue-950 text-2xl"></i>
+        <i class="fa-solid fa-location-dot text-blue-950 text-2xl"></i>
+        <i class="fa-solid fa-heart text-blue-950 text-2xl"></i>
+        <i class="fa-solid fa-user text-blue-950 text-2xl"></i>
     </div>
 </body>
+
 </html>
