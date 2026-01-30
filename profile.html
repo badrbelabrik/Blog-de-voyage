@@ -1,18 +1,75 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Profile</title>
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+        crossorigin="anonymous" referrerpolicy="no-referrer">
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 </head>
+
 <body>
     <header></header>
-    <main>
-        
+    <main class="h-screen flex flex-col md:flex-row">
+        <div class="hidden md:w-1/6 md:h-full md:flex flex-col justify-center px-4 gap-10 bg-gray-100 rounded-r-2xl">
+            <div class="flex gap-2 items-center">
+                <i class="fa-solid fa-house text-3xl"></i>
+                <h1 class="font-bold">Home</h1>
+            </div>
+
+            <div class="flex gap-2 items-center">
+                <i class="fa-solid fa-magnifying-glass text-3xl"></i>
+                <h1 class="font-bold">Search</h1>
+            </div>
+
+
+            <div class="flex gap-2 items-center">
+                <i class="fa-solid fa-location-dot text-3xl"></i>
+                <h1 class="font-bold">Location</h1>
+            </div>
+
+            <div class="flex gap-2 items-center">
+                <i class="fa-solid fa-heart text-3xl"></i>
+                <h1 class="font-bold">Notifications</h1>
+            </div>
+
+            <div class="flex gap-2 items-center">
+                <i class="fa-solid fa-user text-3xl"></i>
+                <h1 class="font-bold">Profile</h1>
+            </div>
+        </div>
+        <div class="h-screen flex flex-col md:p-16 md:items-center md:w-5/6">
+            <div class="relative bg-[url(images/national-park.png)] bg-cover bg-center object-cover h-[35vh] md:h-[45vh] w-full md:rounded-2xl">
+                <img src="images/profile.png" alt="" class="absolute left-0 bottom-0 w-32 h-32">
+            </div>
+            <form class="flex flex-col gap-2 w-full justify-center mx-4">
+                <h1 class="font-bold text-">Edit Profile</h1>
+                <h2>Update your personal informations</h2>
+                <label for="fname">First name:</label>
+                <input type="text" id="fname" name="fname" class="outline-2 rounded-2xl md:w-1/2">
+                <label for="lname">Last name:</label>
+                <input type="text" id="lname" name="lname" class="outline-2 rounded-2xl md:w-1/2">
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="username" class="outline-2 rounded-2xl md:w-1/2">
+                <label for="email">Email:</label>
+                <input type="text" id="email" name="email" class="outline-2 rounded-2xl md:w-1/2">
+                <label for="number">Phone number:</label>
+                <input type="text" id="number" name="number" class="outline-2 rounded-2xl md:w-1/2">
+            </form>
+        </div>
+
     </main>
-    <footer></footer>
+    <!-- NAVBAR -->
+        <div
+            class="flex gap-6 h-16 px-4 justify-between items-center shadow-[0_-6px_12px_rgba(0,0,0,0.15)]  rounded-xl bg-white sticky bottom-0 md:hidden">
+            <i class="fa-solid fa-house text-3xl"></i>
+            <i class="fa-solid fa-location-dot text-3xl"></i>
+            <i class="fa-solid fa-heart text-3xl"></i>
+            <i class="fa-solid fa-user text-3xl"></i>
+        </div>
 </body>
+
 </html>
