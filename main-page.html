@@ -54,7 +54,8 @@
             </a>
         </div>
         <div class="flex flex-col md:w-4/6">
-            <div class="flex flex-col gap-4 md:justify-center md:h-full md:fixed md:right-0 md:top-0 md:p-4 md:bg-gray-100 rounded-l-2xl">
+            <div
+                class="flex flex-col gap-4 md:justify-center md:h-full md:fixed md:right-0 md:top-0 md:p-4 md:bg-gray-100 rounded-l-2xl">
                 <h1 class="items-center font-bold">Blogger of the week</h1>
                 <div class="flex gap-2 overflow-x-auto items-start md:flex md:flex-col md:items-center">
 
@@ -92,7 +93,8 @@
 
             <div class="flex flex-col gap-2 md:items-center">
                 <h1 class="items-center font-bold">What do you want to read?</h1>
-                <div class="flex gap-2 my-2">
+                
+                    <div class="flex gap-2 my-2">
                     <div class="rounded-full bg-[#CCF3EA] inline-block p-2 hover:outline-1">
                         <h2>All</h2>
                     </div>
@@ -109,150 +111,65 @@
                         <h3>Mountains</h3>
                     </div>
                 </div>
+                <button
+                    class="bg-emerald-700 text-white text-center font-bold py-3 px-16 rounded-lg mt-4 hover:bg-emerald-700 transition-colors">
+                    <i class="fa-solid fa-plus"></i> Add Card
+                </button>
+                
+
             </div>
 
 
             <div class="flex flex-col gap-4 pb-2 md:items-center">
+
                 <!-- CARD 1 -->
-                <a href="details.html">
-                    <div
-                        class="max-w-sm rounded-2xl items-center overflow-hidden object-cover bg-white shadow-lg my-2 md:w-md">
-                        <!-- Image -->
+                <div
+                    class="max-w-sm rounded-2xl items-center overflow-hidden object-cover bg-white shadow-lg my-2 md:w-md">
+                    <!-- Image -->
+                    <a href="">
                         <img src="images/yellow-river.jpg" alt="Yellow river" class="w-full h-48 object-cover" />
                         <!-- Content -->
                         <div class="p-4">
                             <h2 class="font-bold text-lg">Yellow river</h2>
                             <p class="text-sm text-gray-500">by Ian Jacobson</p>
-
-                            <div class="flex items-center gap-4 text-sm text-gray-500 mt-2">
-                                <div class="flex items-center gap-1">
-                                    <i class="fa-solid fa-location-crosshairs"></i> <span>China</span>
-                                </div>
-                                <div class="flex items-center gap-1">
-                                    <i class="fa-regular fa-clock"></i> <span>15 min</span>
-                                </div>
-                                <div class="flex items-center gap-1">
-                                    <i class="fa-regular fa-eye"></i> <span>12k</span>
-                                </div>
+                            
+                    </a>
+                    <div class="flex justify-between">
+                        <div class="flex items-center gap-4 text-sm text-gray-500 mt-2">
+                            <div class="flex items-center gap-1">
+                                <i class="fa-solid fa-location-crosshairs"></i> <span>China</span>
+                            </div>
+                            <div class="flex items-center gap-1">
+                                <i class="fa-regular fa-clock"></i> <span>15 min</span>
+                            </div>
+                            <div class="flex items-center gap-1">
+                                <i class="fa-regular fa-eye"></i> <span>12k</span>
                             </div>
                         </div>
+                            <button class="cursor-pointer"> ⋮ </button>
                     </div>
-                </a>
-                <!-- CARD 2 -->
-                <a href="details.html">
-                    <div
-                        class="max-w-sm rounded-2xl items-center overflow-hidden object-cover bg-white shadow-lg my-2 md:w-md">
-                        <!-- Image -->
-                        <img src="images/national-park.png" alt="Yellow river" class="w-full h-48 object-cover" />
-                        <!-- Content -->
-                        <div class="p-4">
-                            <h2 class="font-bold text-lg">Banff National Park</h2>
-                            <p class="text-sm text-gray-500">by Joe Rath</p>
 
-                            <div class="flex items-center gap-4 text-sm text-gray-500 mt-2">
-                                <div class="flex items-center gap-1">
-                                    <i class="fa-solid fa-location-crosshairs"></i> <span>Canada</span>
-                                </div>
-                                <div class="flex items-center gap-1">
-                                    <i class="fa-regular fa-clock"></i> <span>12 min</span>
-                                </div>
-                                <div class="flex items-center gap-1">
-                                    <i class="fa-regular fa-eye"></i> <span>30k</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </a>
-                <!-- CARD 3 -->
-                <a href="details.html">
-                    <div
-                        class="max-w-sm rounded-2xl items-center overflow-hidden object-cover bg-white shadow-lg my-2 md:w-md">
-                        <!-- Image -->
-                        <img src="images/santorini.png" alt="Yellow river" class="w-full h-48 object-cover" />
-                        <!-- Content -->
-                        <div class="p-4">
-                            <h2 class="font-bold text-lg">Santorini</h2>
-                            <p class="text-sm text-gray-500">by Francis Sanford</p>
-
-                            <div class="flex items-center gap-4 text-sm text-gray-500 mt-2">
-                                <div class="flex items-center gap-1">
-                                    <i class="fa-solid fa-location-crosshairs"></i> <span>Greece</span>
-                                </div>
-                                <div class="flex items-center gap-1">
-                                    <i class="fa-regular fa-clock"></i> <span>10 min</span>
-                                </div>
-                                <div class="flex items-center gap-1">
-                                    <i class="fa-regular fa-eye"></i> <span>23k</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </a>
-                <!-- CARD 4 -->
-                <a href="details.html">
-                    <div
-                        class="max-w-sm rounded-2xl items-center overflow-hidden object-cover bg-white shadow-lg my-2 md:w-md">
-                        <!-- Image -->
-                        <img src="images/sahara.jpg" alt="Yellow river" class="w-full h-48 object-cover" />
-                        <!-- Content -->
-                        <div class="p-4">
-                            <h2 class="font-bold text-lg">Moroccan Sahara</h2>
-                            <p class="text-sm text-gray-500">by Bradley Stiedeman</p>
-
-                            <div class="flex items-center gap-4 text-sm text-gray-500 mt-2">
-                                <div class="flex items-center gap-1">
-                                    <i class="fa-solid fa-location-crosshairs"></i> <span>Morocco</span>
-                                </div>
-                                <div class="flex items-center gap-1">
-                                    <i class="fa-regular fa-clock"></i> <span>15 min</span>
-                                </div>
-                                <div class="flex items-center gap-1">
-                                    <i class="fa-regular fa-eye"></i> <span>50k</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </a>
-                <!-- CARD 5 -->
-                <a href="details.html">
-                    <div class="max-w-sm rounded-2xl overflow-hidden object-cover bg-white shadow-lg my-2 md:w-md">
-                        <!-- Image -->
-                        <img src="images/iceland-waterfalls.jpeg" alt="Yellow river" class="w-full h-48 object-cover" />
-                        <!-- Content -->
-                        <div class="p-4">
-                            <h2 class="font-bold text-lg">Iceland Watterfalls</h2>
-                            <p class="text-sm text-gray-500">by Robert Cole</p>
-
-                            <div class="flex items-center gap-4 text-sm text-gray-500 mt-2">
-                                <div class="flex items-center gap-1">
-                                    <i class="fa-solid fa-location-crosshairs"></i> <span>Iceland</span>
-                                </div>
-                                <div class="flex items-center gap-1">
-                                    <i class="fa-regular fa-clock"></i> <span>12 min</span>
-                                </div>
-                                <div class="flex items-center gap-1">
-                                    <i class="fa-regular fa-eye"></i> <span>11k</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </a>
+                </div>
             </div>
-            <div
-                class="fixed flex flex-col gap-1 items-center justify-center p-4 h-16 w-16 bg-emerald-700 text-white bg-cover rounded-full bottom-20 right-2 md:hidden">
-                <i class="fa-solid fa-arrow-up-from-bracket"></i>
-                <h1 class="text-sm font-bold text-white">Upload</h1>
-            </div>
+
+
+        </div>
+        <div
+            class="fixed flex flex-col gap-1 items-center justify-center p-4 h-16 w-16 bg-emerald-700 text-white bg-cover rounded-full bottom-20 right-2 md:hidden">
+            <i class="fa-solid fa-arrow-up-from-bracket"></i>
+            <h1 class="text-sm font-bold text-white">Upload</h1>
+        </div>
         </div>
     </main>
     <!-- NAVBAR -->
     <div
         class="flex gap-6 h-16 px-4 justify-between items-center shadow-[0_-6px_12px_rgba(0,0,0,0.15)]  rounded-xl bg-white sticky bottom-0 md:hidden">
-        <a href="main-page.html"><i class="fa-solid fa-house text-3xl"></i></a> 
+        <a href="main-page.html"><i class="fa-solid fa-house text-3xl"></i></a>
         <a href=""><i class="fa-solid fa-location-dot text-3xl"></i></a>
         <a href=""><i class="fa-solid fa-heart text-3xl"></i></a>
         <a href="profile.html"><i class="fa-solid fa-user text-3xl"></i></a>
     </div>
+    <script src="script.js"></script>
 </body>
 
 </html>
