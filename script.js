@@ -20,10 +20,13 @@ function closeModal(){
 }
 
 // Open Edit Card Menu
-function openMenu(){
-    const menu = document.getElementById("drop-menu")
-    menu.classList.toggle("hidden")
-}
+    // const editBtn = document.getElementById("openModal")
+    
+    // editBtn.addEventListener("click", ()=>{
+    //     const menu = document.getElementById("drop-menu")
+    //     menu.classList.toggle("hidden")
+    // })
+    
 
 function saveCard(){
     const cards = getCards()
@@ -33,9 +36,10 @@ function saveCard(){
    const location = document.getElementById("inputLocation")
    const readingTime = document.getElementById("inputTime")
    const category = document.getElementById("inputCategory")
+   const image = document.getElementById("inputImage")
    const description = document.getElementById("inputDescription")
 
-   const newCard = {title:title.value,author:author.value,location:location.value,readingTime:readingTime.value,views:0,category:category.value,description:description.value}
+   const newCard = {title:title.value,author:author.value,location:location.value,readingTime:readingTime.value,views:0,category:category.value,image:image.value,description:description.value}
    cards.push(newCard)
    setCards(cards)
    showMessage("Card created successfully !!")
@@ -61,7 +65,7 @@ function fillCardsContainer(){
         const cardDiv = document.createElement("div")
         cardDiv.className = "max-w-sm rounded-2xl items-center  object-cover bg-white shadow-lg my-2 md:w-md"
         cardDiv.innerHTML = `<a href="details.html">
-                        <img src="images/yellow-river.jpg" alt="Yellow river" class="w-full h-48 rounded-t-2xl object-cover" />
+                        <img src="${card.image}" alt="${card.title}" class="w-full h-48 rounded-t-2xl object-cover" />
                         <!-- Content -->
                         <div class="p-4">
                             <h2 class="font-bold text-lg">${card.title}</h2>
@@ -81,8 +85,8 @@ function fillCardsContainer(){
                             </div>
                         </div>
                         <div class="relative">
-                            <button id="openModal" class="rounded-full size-5 cursor-pointer"> ⋮ </button>
-                                <div id="drop-menu" class="hidden absolute right-0 bottom-full mb-2 md:bottom-auto md:top-full md:mt-2 md:mb-0 w-28 bg-white rounded-lg shadow-lg z-50">
+                            <button class="drop-menu rounded-full size-5 cursor-pointer"> ⋮ </button>
+                                <div class="menu hidden absolute right-0 bottom-full mb-2 md:bottom-auto md:top-full md:mt-2 md:mb-0 w-28 bg-white rounded-lg shadow-lg z-50">
                                     <button class="block w-full text-left px-3 py-2 rounded-t-lg hover:bg-gray-100">Edit</button>
                                     <button class="block w-full text-left px-3 py-2 rounded-b-lg hover:bg-gray-100 text-red-500">Delete</button>
                                 </div>

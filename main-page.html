@@ -114,7 +114,7 @@
                 </div>
                 <button onclick="openModal()"
                     class="bg-emerald-700 text-white text-center font-bold py-3 px-16 rounded-lg mt-4 hover:bg-emerald-700 transition-colors cursor-pointer">
-                    <i class="fa-solid fa-plus"></i> Add Card
+                    <i class="fa-solid fa-plus"></i> Add Destination
                 </button>
 
 
@@ -148,8 +148,8 @@
                             </div>
                         </div>
                         <div class="relative">
-                            <button id="openModal" class="rounded-full size-5 cursor-pointer"> ⋮ </button>
-                                <div id="drop-menu" class="hidden absolute right-0 bottom-full mb-2 md:bottom-auto md:top-full md:mt-2 md:mb-0 w-28 bg-white rounded-lg shadow-lg z-50">
+                            <button class="menu-btn rounded-full size-5 cursor-pointer"> ⋮ </button>
+                                <div class="menu hidden absolute right-0 bottom-full mb-2 md:bottom-auto md:top-full md:mt-2 md:mb-0 w-28 bg-white rounded-lg shadow-lg z-50">
                                     <button class="block w-full text-left px-3 py-2 rounded-t-lg hover:bg-gray-100">Edit</button>
                                     <button class="block w-full text-left px-3 py-2 rounded-b-lg hover:bg-gray-100 text-red-500">Delete</button>
                                 </div>
@@ -191,7 +191,7 @@
                     <!-- Modal header -->
                     <div class="flex items-center justify-between border-b border-default pb-4 md:pb-5">
                         <h3 class="text-lg font-medium text-heading">
-                            Create new Card
+                            Create new Destination
                         </h3>
                         <button onclick="closeModal()" type="button"
                             class="text-body bg-transparent hover:bg-neutral-tertiary hover:text-heading rounded-base text-sm w-9 h-9 ms-auto inline-flex justify-center items-center"
@@ -212,21 +212,21 @@
                                     class="block mb-2.5 text-sm font-medium text-heading">Title</label>
                                 <input id="inputTitle" type="text" name="title" id="title"
                                     class="bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand block w-full px-3 py-2.5 shadow-xs placeholder:text-body"
-                                    placeholder="Type card title" required="">
+                                    placeholder="Type title" required="">
                             </div>
                             <div class="col-span-2">
                                 <label for="inputAuthor"
                                     class="block mb-2.5 text-sm font-medium text-heading">Author</label>
                                 <input id="inputAuthor" type="text" name="author" id="name"
                                     class="bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand block w-full px-3 py-2.5 shadow-xs placeholder:text-body"
-                                    placeholder="Type card author" required="">
+                                    placeholder="Type author" required="">
                             </div>
                             <div class="col-span-2">
                                 <label for="inputLocation"
                                     class="block mb-2.5 text-sm font-medium text-heading">Location</label>
                                 <input id="inputLocation" type="text" name="location" id="name"
                                     class="bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand block w-full px-3 py-2.5 shadow-xs placeholder:text-body"
-                                    placeholder="Type card location" required="">
+                                    placeholder="Type location" required="">
                             </div>
                             <div class="col-span-2">
                                 <label for="inputTime" class="block mb-2.5 text-sm font-medium text-heading">Reading
@@ -242,19 +242,21 @@
                                 <select id="inputCategory"
                                     class="block w-full px-3 py-2.5 bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand px-3 py-2.5 shadow-xs placeholder:text-body">
                                     <option selected="">Select category</option>
-                                    <option value="Forest">Forest</option>
-                                    <option value="Beach">Beach</option>
-                                    <option value="River">River</option>
-                                    <option value="Mountain">Mountain</option>
+                                    <option value="Forests">Forest</option>
+                                    <option value="Beachs">Beach</option>
+                                    <option value="Rivers">River</option>
+                                    <option value="Mountains">Mountain</option>
+                                    <option value="Deserts">Desert</option>
                                 </select>
                             </div>
                             <div class="col-span-2">
                                 <label class="block mb-2.5 text-sm font-medium">Image</label>
-                                <select id="inputImage" class="block w-full px-3 py-2.5 border rounded-base">
+                                <select id="inputImage" class="block w-full px-3 py-2.5 border rounded-base overflow-y-auto">
                                     <option value="images/yellow-river.jpg">Yellow River</option>
                                     <option value="images/iceland.jpg">Iceland</option>
                                     <option value="images/sahara.jpg">Sahara</option>
                                     <option value="images/national-park.png">National park</option>
+                                    <option value="images/santorini.png">Santorini</option>
                                 </select>
                             </div>
                             <div class="col-span-2">
@@ -262,7 +264,7 @@
                                     class="block mb-2.5 text-sm font-medium text-heading">Description</label>
                                 <textarea id="inputDescription" rows="4"
                                     class="block bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand block w-full p-3.5 shadow-xs placeholder:text-body"
-                                    placeholder="Write product description here"></textarea>
+                                    placeholder="Write destination description here"></textarea>
                             </div>
                         </div>
                         <div class="flex items-center justify-between border-t border-default pt-4 md:pt-6">
