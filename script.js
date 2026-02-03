@@ -1,2 +1,99 @@
-let cards = []
+function getCards(){
+    return JSON.parse(localStorage.getItem("cards")) || []
+}
+function setCards(cards){
+    localStorage.setItem("cards", JSON.stringify(cards))
+}
 
+function createCard(){
+        
+}
+
+// Open card creation modal
+function openModal(){
+    const modal = document.getElementById("crud-modal")
+    modal.classList.remove("hidden")
+}
+function closeModal(){
+    const modal = document.getElementById("crud-modal")
+    modal.classList.add("hidden")
+}
+
+// Open Edit Card Menu
+function openMenu(){
+    const menu = document.getElementById("drop-menu")
+    menu.classList.toggle("hidden")
+}
+
+function saveCard(){
+    const cards = getCards()
+    
+   const title = document.getElementById("inputTitle")
+   const author = document.getElementById("inputAuthor")
+   const location = document.getElementById("inputLocation")
+   const readingTime = document.getElementById("inputTime")
+   const category = document.getElementById("inputCategory")
+   const description = document.getElementById("inputDescription")
+
+   const newCard = {title:title.value,author:author.value,location:location.value,readingTime:readingTime.value,views:0,category:category.value,description:description.value}
+   cards.push(newCard)
+   setCards(cards)
+   showMessage("Card created successfully !!")
+   closeModal()
+}
+
+function showMessage(message, duration = 3000) {
+  const toast = document.getElementById("toast");
+
+  toast.textContent = message;
+  toast.classList.remove("hidden");
+
+  setTimeout(() => {
+    toast.classList.add("hidden");
+  }, duration);
+}
+
+function fillCardsContainer(){
+    const cardsContainer = document.getElementById("cardsContainer")
+    const cards = getCards()
+
+    for (card of cards){
+        const cardDiv = document.createElement("div")
+        cardDiv.className = "max-w-sm rounded-2xl items-center  object-cover bg-white shadow-lg my-2 md:w-md"
+        cardDiv.innerHTML = `<a href="details.html">
+                        <img src="images/yellow-river.jpg" alt="Yellow river" class="w-full h-48 rounded-t-2xl object-cover" />
+                        <!-- Content -->
+                        <div class="p-4">
+                            <h2 class="font-bold text-lg">${card.title}</h2>
+                            <p class="text-sm text-gray-500">by ${card.author}</p>
+                            
+                    </a>
+                    <div class="flex justify-between">
+                        <div class="flex items-center gap-4 text-sm text-gray-500 mt-2">
+                            <div class="flex items-center gap-1">
+                                <i class="fa-solid fa-location-crosshairs"></i> <span>${card.location}</span>
+                            </div>
+                            <div class="flex items-center gap-1">
+                                <i class="fa-regular fa-clock"></i> <span>${card.readingTime} min</span>
+                            </div>
+                            <div class="flex items-center gap-1">
+                                <i class="fa-regular fa-eye"></i> <span>${card.views}</span>
+                            </div>
+                        </div>
+                        <div class="relative">
+                            <button id="openModal" class="rounded-full size-5 cursor-pointer"> ⋮ </button>
+                                <div id="drop-menu" class="hidden absolute right-0 bottom-full mb-2 md:bottom-auto md:top-full md:mt-2 md:mb-0 w-28 bg-white rounded-lg shadow-lg z-50">
+                                    <button class="block w-full text-left px-3 py-2 rounded-t-lg hover:bg-gray-100">Edit</button>
+                                    <button class="block w-full text-left px-3 py-2 rounded-b-lg hover:bg-gray-100 text-red-500">Delete</button>
+                                </div>
+                        </div>
+
+                    </div>`
+        cardsContainer.appendChild(cardDiv)         
+    }
+
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+    fillCardsContainer()
+})

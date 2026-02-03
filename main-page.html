@@ -12,6 +12,7 @@
 </head>
 
 <body>
+    <div id="message" class="message-toast"></div>
     <header
         class="flex items-center justify-between px-4 md:px-8 py-3 bg-white border-b border-gray-200 sticky top-0 md:hidden">
         <button aria-label="Open navigation menu" class="p-2 hover:bg-gray-100 rounded-lg cursor-pointer md:hidden"
@@ -24,9 +25,9 @@
         </button>
     </header>
 
-    <main class="flex flex-col m-4 py-4 md:flex-row md:justify-center">
+    <main class="flex flex-col m-4 py-4 md:grid md:grid-cols-2">
         <div
-            class="hidden w-1/6 md:flex h-full flex-col justify-center px-4 gap-10 bg-gray-100 rounded-r-2xl fixed left-0 top-0">
+            class="hidden md:col-span-1 md:flex h-full flex-col justify-center px-4 gap-10 bg-gray-100 rounded-r-2xl fixed left-0 top-0">
             <a href="main-page.html" class="flex gap-2 items-center">
                 <i class="fa-solid fa-house text-3xl"></i>
                 <h1 class="font-bold">Home</h1>
@@ -53,7 +54,7 @@
                 <h1 class="font-bold">Profile</h1>
             </a>
         </div>
-        <div class="flex flex-col md:w-4/6">
+        <div class="flex flex-col md:col-span-4">
             <div
                 class="flex flex-col gap-4 md:justify-center md:h-full md:fixed md:right-0 md:top-0 md:p-4 md:bg-gray-100 rounded-l-2xl">
                 <h1 class="items-center font-bold">Blogger of the week</h1>
@@ -93,8 +94,8 @@
 
             <div class="flex flex-col gap-2 md:items-center">
                 <h1 class="items-center font-bold">What do you want to read?</h1>
-                
-                    <div class="flex gap-2 my-2">
+
+                <div class="flex gap-2 my-2">
                     <div class="rounded-full bg-[#CCF3EA] inline-block p-2 hover:outline-1">
                         <h2>All</h2>
                     </div>
@@ -111,24 +112,24 @@
                         <h3>Mountains</h3>
                     </div>
                 </div>
-                <button
+                <button onclick="openModal()"
                     class="bg-emerald-700 text-white text-center font-bold py-3 px-16 rounded-lg mt-4 hover:bg-emerald-700 transition-colors cursor-pointer">
                     <i class="fa-solid fa-plus"></i> Add Card
                 </button>
-                
+
 
             </div>
 
 
-            <div class="flex flex-col gap-4 pb-2 md:items-center">
+            <div id="cardsContainer" class="flex flex-col gap-4 pb-2 md:items-center">
 
                 <!-- CARD 1 -->
-                <div
+                <!-- <div
                     class="max-w-sm rounded-2xl items-center  object-cover bg-white shadow-lg my-2 md:w-md">
-                    <!-- Image -->
-                    <a href="">
+                    -- Image --
+                    <a href="details.html">
                         <img src="images/yellow-river.jpg" alt="Yellow river" class="w-full h-48 rounded-t-2xl object-cover" />
-                        <!-- Content -->
+                         Content 
                         <div class="p-4">
                             <h2 class="font-bold text-lg">Yellow river</h2>
                             <p class="text-sm text-gray-500">by Ian Jacobson</p>
@@ -147,8 +148,8 @@
                             </div>
                         </div>
                         <div class="relative">
-                            <button class="rounded-full size-5 cursor-pointer"> ⋮ </button>
-                                <div class="menu absolute right-0 bottom-full mb-2 md:bottom-auto md:top-full md:mt-2 md:mb-0 w-28 bg-white rounded-lg shadow-lg z-50">
+                            <button id="openModal" class="rounded-full size-5 cursor-pointer"> ⋮ </button>
+                                <div id="drop-menu" class="hidden absolute right-0 bottom-full mb-2 md:bottom-auto md:top-full md:mt-2 md:mb-0 w-28 bg-white rounded-lg shadow-lg z-50">
                                     <button class="block w-full text-left px-3 py-2 rounded-t-lg hover:bg-gray-100">Edit</button>
                                     <button class="block w-full text-left px-3 py-2 rounded-b-lg hover:bg-gray-100 text-red-500">Delete</button>
                                 </div>
@@ -156,7 +157,7 @@
 
                     </div>
 
-                </div>
+                </div> -->
             </div>
 
 
@@ -171,67 +172,122 @@
 
 
 
-        
 
-<!-- Modal toggle -->
-<button data-modal-target="crud-modal" data-modal-toggle="crud-modal" class="text-white bg-brand box-border border border-transparent hover:bg-brand-strong focus:ring-4 focus:ring-brand-medium shadow-xs font-medium leading-5 rounded-base text-sm px-4 py-2.5 focus:outline-none" type="button">
-  Toggle modal
-</button>
 
-<!-- Main modal -->
-<div id="crud-modal" tabindex="-1" aria-hidden="true" class="fixed inset-0 z-50 flex items-center justify-center bg-black/40">
-    <div class="relative p-4 w-full max-w-md max-h-full">
-        <!-- Modal content -->
-        <div class="relative bg-neutral-primary-soft border bg-gray-100 border-default rounded-base shadow-sm p-4 md:p-6">
-            <!-- Modal header -->
-            <div class="flex items-center justify-between border-b border-default pb-4 md:pb-5">
-                <h3 class="text-lg font-medium text-heading">
-                    Create new product
-                </h3>
-                <button type="button" class="text-body bg-transparent hover:bg-neutral-tertiary hover:text-heading rounded-base text-sm w-9 h-9 ms-auto inline-flex justify-center items-center" data-modal-hide="crud-modal">
-                    <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18 17.94 6M18 18 6.06 6"/></svg>
-                    <span class="sr-only">Close modal</span>
-                </button>
+        <!-- Modal toggle -->
+        <button data-modal-target="crud-modal" data-modal-toggle="crud-modal"
+            class="text-white bg-brand box-border border border-transparent hover:bg-brand-strong focus:ring-4 focus:ring-brand-medium shadow-xs font-medium leading-5 rounded-base text-sm px-4 py-2.5 focus:outline-none"
+            type="button">
+            Toggle modal
+        </button>
+
+        <!-- Main modal -->
+        <div id="crud-modal" tabindex="-1"
+            class="hidden fixed inset-0 z-50 flex items-center justify-center bg-black/40">
+            <div class="relative p-4 w-full max-w-md max-h-full">
+                <!-- Modal content -->
+                <div
+                    class="relative bg-neutral-primary-soft border bg-gray-100 border-default rounded-base shadow-sm p-4 md:p-6">
+                    <!-- Modal header -->
+                    <div class="flex items-center justify-between border-b border-default pb-4 md:pb-5">
+                        <h3 class="text-lg font-medium text-heading">
+                            Create new Card
+                        </h3>
+                        <button onclick="closeModal()" type="button"
+                            class="text-body bg-transparent hover:bg-neutral-tertiary hover:text-heading rounded-base text-sm w-9 h-9 ms-auto inline-flex justify-center items-center"
+                            data-modal-hide="crud-modal">
+                            <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24"
+                                height="24" fill="none" viewBox="0 0 24 24">
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                    stroke-width="2" d="M6 18 17.94 6M18 18 6.06 6" />
+                            </svg>
+                            <span class="sr-only">Close modal</span>
+                        </button>
+                    </div>
+                    <!-- Modal body -->
+                    <form>
+                        <div class="grid gap-4 grid-cols-1 py-4 md:py-6 overflow-y-auto max-h-[60vh]">
+                            <div class="col-span-2">
+                                <label for="inputTitle"
+                                    class="block mb-2.5 text-sm font-medium text-heading">Title</label>
+                                <input id="inputTitle" type="text" name="title" id="title"
+                                    class="bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand block w-full px-3 py-2.5 shadow-xs placeholder:text-body"
+                                    placeholder="Type card title" required="">
+                            </div>
+                            <div class="col-span-2">
+                                <label for="inputAuthor"
+                                    class="block mb-2.5 text-sm font-medium text-heading">Author</label>
+                                <input id="inputAuthor" type="text" name="author" id="name"
+                                    class="bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand block w-full px-3 py-2.5 shadow-xs placeholder:text-body"
+                                    placeholder="Type card author" required="">
+                            </div>
+                            <div class="col-span-2">
+                                <label for="inputLocation"
+                                    class="block mb-2.5 text-sm font-medium text-heading">Location</label>
+                                <input id="inputLocation" type="text" name="location" id="name"
+                                    class="bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand block w-full px-3 py-2.5 shadow-xs placeholder:text-body"
+                                    placeholder="Type card location" required="">
+                            </div>
+                            <div class="col-span-2">
+                                <label for="inputTime" class="block mb-2.5 text-sm font-medium text-heading">Reading
+                                    Time</label>
+                                <input id="inputTime" type="text" name="readingtime" id="name"
+                                    class="bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand block w-full px-3 py-2.5 shadow-xs placeholder:text-body"
+                                    placeholder="Reading time (minutes)" required="">
+                            </div>
+
+                            <div class="col-span-2">
+                                <label for="inputCategory"
+                                    class="block mb-2.5 text-sm font-medium text-heading">Category</label>
+                                <select id="inputCategory"
+                                    class="block w-full px-3 py-2.5 bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand px-3 py-2.5 shadow-xs placeholder:text-body">
+                                    <option selected="">Select category</option>
+                                    <option value="Forest">Forest</option>
+                                    <option value="Beach">Beach</option>
+                                    <option value="River">River</option>
+                                    <option value="Mountain">Mountain</option>
+                                </select>
+                            </div>
+                            <div class="col-span-2">
+                                <label class="block mb-2.5 text-sm font-medium">Image</label>
+                                <select id="inputImage" class="block w-full px-3 py-2.5 border rounded-base">
+                                    <option value="images/yellow-river.jpg">Yellow River</option>
+                                    <option value="images/iceland.jpg">Iceland</option>
+                                    <option value="images/sahara.jpg">Sahara</option>
+                                    <option value="images/national-park.png">National park</option>
+                                </select>
+                            </div>
+                            <div class="col-span-2">
+                                <label for="inputDescription"
+                                    class="block mb-2.5 text-sm font-medium text-heading">Description</label>
+                                <textarea id="inputDescription" rows="4"
+                                    class="block bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand block w-full p-3.5 shadow-xs placeholder:text-body"
+                                    placeholder="Write product description here"></textarea>
+                            </div>
+                        </div>
+                        <div class="flex items-center justify-between border-t border-default pt-4 md:pt-6">
+                            <button onclick="saveCard()"
+                                class="inline-flex items-center bg-emerald-700 text-white bg-brand hover:bg-brand-strong box-border border border-transparent focus:ring-4 focus:ring-brand-medium shadow-xs font-medium leading-5 rounded-base text-sm px-4 py-2.5 focus:outline-none">
+                                <svg class="w-4 h-4 me-1.5 -ms-0.5" aria-hidden="true"
+                                    xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
+                                    viewBox="0 0 24 24">
+                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                        stroke-width="2" d="M5 12h14m-7 7V5" />
+                                </svg>
+                                Add new card
+                            </button>
+                            <button onclick="closeModal()" data-modal-hide="crud-modal" type="button"
+                                class="text-body bg-neutral-secondary-medium box-border border border-default-medium hover:bg-neutral-tertiary-medium hover:text-heading focus:ring-4 focus:ring-neutral-tertiary shadow-xs font-medium leading-5 rounded-base text-sm px-4 py-2.5 focus:outline-none">Cancel</button>
+                        </div>
+                    </form>
+                </div>
             </div>
-            <!-- Modal body -->
-            <form action="#">
-                <div class="grid gap-4 grid-cols-2 py-4 md:py-6">
-                    <div class="col-span-2">
-                        <label for="name" class="block mb-2.5 text-sm font-medium text-heading">Name</label>
-                        <input type="text" name="name" id="name" class="bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand block w-full px-3 py-2.5 shadow-xs placeholder:text-body" placeholder="Type product name" required="">
-                    </div>
-                    <div class="col-span-2 sm:col-span-1">
-                        <label for="price" class="block mb-2.5 text-sm font-medium text-heading">Price</label>
-                        <input type="number" name="price" id="price" class="bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand block w-full px-3 py-2.5 shadow-xs placeholder:text-body" placeholder="$2999" required="">
-                    </div>
-                    <div class="col-span-2 sm:col-span-1">
-                        <label for="category" class="block mb-2.5 text-sm font-medium text-heading">Category</label>
-                        <select id="category" class="block w-full px-3 py-2.5 bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand px-3 py-2.5 shadow-xs placeholder:text-body">
-                            <option selected="">Select category</option>
-                            <option value="TV">TV/Monitors</option>
-                            <option value="PC">PC</option>
-                            <option value="GA">Gaming/Console</option>
-                            <option value="PH">Phones</option>
-                        </select>
-                    </div>
-                    <div class="col-span-2">
-                        <label for="description" class="block mb-2.5 text-sm font-medium text-heading">Product Description</label>
-                        <textarea id="description" rows="4" class="block bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand block w-full p-3.5 shadow-xs placeholder:text-body" placeholder="Write product description here"></textarea>                    
-                    </div>
-                </div>
-                <div class="flex items-center justify-between border-t border-default pt-4 md:pt-6">
-                    <button type="submit" class="inline-flex items-center bg-emerald-700 text-white bg-brand hover:bg-brand-strong box-border border border-transparent focus:ring-4 focus:ring-brand-medium shadow-xs font-medium leading-5 rounded-base text-sm px-4 py-2.5 focus:outline-none">
-                        <svg class="w-4 h-4 me-1.5 -ms-0.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14m-7 7V5"/></svg>
-                        Add new card
-                    </button>
-                    <button data-modal-hide="crud-modal" type="button" class="text-body bg-neutral-secondary-medium box-border border border-default-medium hover:bg-neutral-tertiary-medium hover:text-heading focus:ring-4 focus:ring-neutral-tertiary shadow-xs font-medium leading-5 rounded-base text-sm px-4 py-2.5 focus:outline-none">Cancel</button>
-                </div>
-            </form>
         </div>
-    </div>
-</div> 
 
     </main>
+    <div id="toast"
+        class="hidden fixed top-10 right-8 -translate-x-1/2 bg-emerald-700 text-white px-6 py-3 rounded-lg shadow-lg z-50">
+    </div>
     <!-- NAVBAR -->
     <div
         class="flex gap-6 h-16 px-4 justify-between items-center shadow-[0_-6px_12px_rgba(0,0,0,0.15)]  rounded-xl bg-white sticky bottom-0 md:hidden">
