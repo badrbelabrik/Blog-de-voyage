@@ -43,7 +43,9 @@ function saveCard(){
    cards.push(newCard)
    setCards(cards)
    showMessage("Card created successfully !!")
+   fillCardsContainer()
    closeModal()
+
 }
 
 function showMessage(message, duration = 3000) {
@@ -85,7 +87,7 @@ function fillCardsContainer(){
                             </div>
                         </div>
                         <div class="relative">
-                            <button class="drop-menu rounded-full size-5 cursor-pointer"> ⋮ </button>
+                            <button class="menu-btn rounded-full size-5 cursor-pointer"> ⋮ </button>
                                 <div class="menu hidden absolute right-0 bottom-full mb-2 md:bottom-auto md:top-full md:mt-2 md:mb-0 w-28 bg-white rounded-lg shadow-lg z-50">
                                     <button class="block w-full text-left px-3 py-2 rounded-t-lg hover:bg-gray-100">Edit</button>
                                     <button class="block w-full text-left px-3 py-2 rounded-b-lg hover:bg-gray-100 text-red-500">Delete</button>
@@ -95,8 +97,20 @@ function fillCardsContainer(){
                     </div>`
         cardsContainer.appendChild(cardDiv)         
     }
-
 }
+
+    const cardsContainer = document.getElementById("cardsContainer")
+    cardsContainer.addEventListener("click", function(){
+        if(click)
+    })
+    const btns = document.getElementsByClassName("menu-btn")
+    for(btn of btns){
+        btn.addEventListener("click", function(){
+            this.nextElementSibling.classList.toggle("hidden")
+        })
+    }
+
+
 
 document.addEventListener("DOMContentLoaded", () => {
     fillCardsContainer()
