@@ -18,6 +18,10 @@ function closeModal() {
     const modal = document.getElementById("crud-modal")
     modal.classList.add("hidden")
 }
+function closeDeleteModal(){
+    const modal = document.getElementById("popup-modal")
+    modal.classList.add("hidden")
+}
 
 // Open Edit Card Menu
 // const editBtn = document.getElementById("openModal")
@@ -63,7 +67,7 @@ function fillCardsContainer() {
     const cardsContainer = document.getElementById("cardsContainer")
     const cards = getCards()
 
-    for (card of cards) {
+    cards.forEach((card, index) => {
         const cardDiv = document.createElement("div")
         cardDiv.className = "max-w-sm rounded-2xl items-center  object-cover bg-white shadow-lg my-2 md:w-md"
         cardDiv.innerHTML = `<a href="details.html">
@@ -71,8 +75,7 @@ function fillCardsContainer() {
                         <!-- Content -->
                         <div class="p-4">
                             <h2 class="font-bold text-lg">${card.title}</h2>
-                            <p class="text-sm text-gray-500">by ${card.author}</p>
-                            
+                            <p class="text-sm text-gray-500">by ${card.author}</p>                      
                     </a>
                     <div class="flex justify-between">
                         <div class="flex items-center gap-4 text-sm text-gray-500 mt-2">
@@ -89,17 +92,19 @@ function fillCardsContainer() {
                         <div class="relative">
                             <button class="menu-btn rounded-full size-5 cursor-pointer"> ⋮ </button>
                                 <div class="menu hidden absolute right-0 bottom-full mb-2 md:bottom-auto md:top-full md:mt-2 md:mb-0 w-28 bg-white rounded-lg shadow-lg z-50">
-                                    <button class="block w-full text-left px-3 py-2 rounded-t-lg hover:bg-gray-100">Edit</button>
-                                    <button class="block w-full text-left px-3 py-2 rounded-b-lg hover:bg-gray-100 text-red-500">Delete</button>
+                                    <button class="edit block w-full text-left px-3 py-2 rounded-t-lg hover:bg-gray-100">Edit</button>
+                                    <button class="delete block w-full text-left px-3 py-2 rounded-b-lg hover:bg-gray-100 text-red-500">Delete</button>
                                 </div>
                         </div>
-
                     </div>`
+                    cardDiv.dataset.index = index;
         cardsContainer.appendChild(cardDiv)
-    }
-
+        console.log(index);
+        
+    })
 }
 
+// Drop down menus function
 const cardsContainer = document.getElementById("cardsContainer")
 cardsContainer.addEventListener("click", function (event) {
     const menus = cardsContainer.getElementsByClassName("menu")
@@ -114,20 +119,30 @@ cardsContainer.addEventListener("click", function (event) {
                     menu.classList.add("hidden")
                 }
                 currentElement.nextElementSibling.classList.remove("hidden")
-            } else {
+            } else{
                 currentElement.nextElementSibling.classList.add("hidden")
             }
-
             break
-        } else {
+        }  else if(currentElement.classList.contains("edit")){
+                // code to run
+                break
+        }  else if(currentElement.classList.contains("delete")){
+                const deleteModal = document.querySelector("#popup-modal")
+                deleteModal.classList.remove("hidden")
+                break
+        }
+        else {
             currentElement = currentElement.parentElement
         }
+
     }
     if (!found) {
-        for (menu of menus) {
+        for (let menu of menus) {
             menu.classList.add("hidden")
         }
     }
+
+
 })
 
 

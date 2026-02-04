@@ -150,8 +150,8 @@
                         <div class="relative">
                             <button class="menu-btn rounded-full size-5 cursor-pointer"> ⋮ </button>
                                 <div class="menu hidden absolute right-0 bottom-full mb-2 md:bottom-auto md:top-full md:mt-2 md:mb-0 w-28 bg-white rounded-lg shadow-lg z-50">
-                                    <button class="block w-full text-left px-3 py-2 rounded-t-lg hover:bg-gray-100">Edit</button>
-                                    <button class="block w-full text-left px-3 py-2 rounded-b-lg hover:bg-gray-100 text-red-500">Delete</button>
+                                    <button class="edit block w-full text-left px-3 py-2 rounded-t-lg hover:bg-gray-100">Edit</button>
+                                    <button class="delete block w-full text-left px-3 py-2 rounded-b-lg hover:bg-gray-100 text-red-500">Delete</button>
                                 </div>
                         </div>
 
@@ -170,16 +170,6 @@
         </div>
 
 
-
-
-
-
-        <!-- Modal toggle -->
-        <button data-modal-target="crud-modal" data-modal-toggle="crud-modal"
-            class="text-white bg-brand box-border border border-transparent hover:bg-brand-strong focus:ring-4 focus:ring-brand-medium shadow-xs font-medium leading-5 rounded-base text-sm px-4 py-2.5 focus:outline-none"
-            type="button">
-            Toggle modal
-        </button>
 
         <!-- Main modal -->
         <div id="crud-modal" tabindex="-1"
@@ -251,7 +241,8 @@
                             </div>
                             <div class="col-span-2">
                                 <label class="block mb-2.5 text-sm font-medium">Image</label>
-                                <select id="inputImage" class="block w-full px-3 py-2.5 border rounded-base overflow-y-auto">
+                                <select id="inputImage"
+                                    class="block w-full px-3 py-2.5 border rounded-base overflow-y-auto">
                                     <option value="images/yellow-river.jpg">Yellow River</option>
                                     <option value="images/iceland.jpg">Iceland</option>
                                     <option value="images/sahara.jpg">Sahara</option>
@@ -285,6 +276,159 @@
                 </div>
             </div>
         </div>
+
+
+
+
+
+        <!-- Edit Card modal -->
+        <div id="edit-modal" tabindex="-1"
+            class="hidden fixed inset-0 z-50 flex items-center justify-center bg-black/40">
+            <div class="relative p-4 w-full max-w-md max-h-full">
+                <!-- Modal content -->
+                <div
+                    class="relative bg-neutral-primary-soft border bg-gray-100 border-default rounded-base shadow-sm p-4 md:p-6">
+                    <!-- Modal header -->
+                    <div class="flex items-center justify-between border-b border-default pb-4 md:pb-5">
+                        <h3 class="text-lg font-medium text-heading">
+                            Create new Destination
+                        </h3>
+                        <button onclick="closeModal()" type="button"
+                            class="text-body bg-transparent hover:bg-neutral-tertiary hover:text-heading rounded-base text-sm w-9 h-9 ms-auto inline-flex justify-center items-center"
+                            data-modal-hide="crud-modal">
+                            <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24"
+                                height="24" fill="none" viewBox="0 0 24 24">
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                    stroke-width="2" d="M6 18 17.94 6M18 18 6.06 6" />
+                            </svg>
+                            <span class="sr-only">Close modal</span>
+                        </button>
+                    </div>
+                    <!-- Modal body -->
+                    <form>
+                        <div class="grid gap-4 grid-cols-1 py-4 md:py-6 overflow-y-auto max-h-[60vh]">
+                            <div class="col-span-2">
+                                <label for="inputTitle"
+                                    class="block mb-2.5 text-sm font-medium text-heading">Title</label>
+                                <input id="inputTitle" type="text" name="title" id="title"
+                                    class="bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand block w-full px-3 py-2.5 shadow-xs placeholder:text-body"
+                                    placeholder="Type title" required="">
+                            </div>
+                            <div class="col-span-2">
+                                <label for="inputAuthor"
+                                    class="block mb-2.5 text-sm font-medium text-heading">Author</label>
+                                <input id="inputAuthor" type="text" name="author" id="name"
+                                    class="bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand block w-full px-3 py-2.5 shadow-xs placeholder:text-body"
+                                    placeholder="Type author" required="">
+                            </div>
+                            <div class="col-span-2">
+                                <label for="inputLocation"
+                                    class="block mb-2.5 text-sm font-medium text-heading">Location</label>
+                                <input id="inputLocation" type="text" name="location" id="name"
+                                    class="bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand block w-full px-3 py-2.5 shadow-xs placeholder:text-body"
+                                    placeholder="Type location" required="">
+                            </div>
+                            <div class="col-span-2">
+                                <label for="inputTime" class="block mb-2.5 text-sm font-medium text-heading">Reading
+                                    Time</label>
+                                <input id="inputTime" type="text" name="readingtime" id="name"
+                                    class="bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand block w-full px-3 py-2.5 shadow-xs placeholder:text-body"
+                                    placeholder="Reading time (minutes)" required="">
+                            </div>
+
+                            <div class="col-span-2">
+                                <label for="inputCategory"
+                                    class="block mb-2.5 text-sm font-medium text-heading">Category</label>
+                                <select id="inputCategory"
+                                    class="block w-full px-3 py-2.5 bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand px-3 py-2.5 shadow-xs placeholder:text-body">
+                                    <option selected="">Select category</option>
+                                    <option value="Forests">Forest</option>
+                                    <option value="Beachs">Beach</option>
+                                    <option value="Rivers">River</option>
+                                    <option value="Mountains">Mountain</option>
+                                    <option value="Deserts">Desert</option>
+                                </select>
+                            </div>
+                            <div class="col-span-2">
+                                <label class="block mb-2.5 text-sm font-medium">Image</label>
+                                <select id="inputImage"
+                                    class="block w-full px-3 py-2.5 border rounded-base overflow-y-auto">
+                                    <option value="images/yellow-river.jpg">Yellow River</option>
+                                    <option value="images/iceland.jpg">Iceland</option>
+                                    <option value="images/sahara.jpg">Sahara</option>
+                                    <option value="images/national-park.png">National park</option>
+                                    <option value="images/santorini.png">Santorini</option>
+                                </select>
+                            </div>
+                            <div class="col-span-2">
+                                <label for="inputDescription"
+                                    class="block mb-2.5 text-sm font-medium text-heading">Description</label>
+                                <textarea id="inputDescription" rows="4"
+                                    class="block bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand block w-full p-3.5 shadow-xs placeholder:text-body"
+                                    placeholder="Write destination description here"></textarea>
+                            </div>
+                        </div>
+                        <div class="flex items-center justify-between border-t border-default pt-4 md:pt-6">
+                            <button onclick="saveCard()"
+                                class="inline-flex items-center bg-emerald-700 text-white bg-brand hover:bg-brand-strong box-border border border-transparent focus:ring-4 focus:ring-brand-medium shadow-xs font-medium leading-5 rounded-base text-sm px-4 py-2.5 focus:outline-none">
+                                <svg class="w-4 h-4 me-1.5 -ms-0.5" aria-hidden="true"
+                                    xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
+                                    viewBox="0 0 24 24">
+                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                        stroke-width="2" d="M5 12h14m-7 7V5" />
+                                </svg>
+                                Add new card
+                            </button>
+                            <button onclick="closeModal()" data-modal-hide="crud-modal" type="button"
+                                class="text-body bg-neutral-secondary-medium box-border border border-default-medium hover:bg-neutral-tertiary-medium hover:text-heading focus:ring-4 focus:ring-neutral-tertiary shadow-xs font-medium leading-5 rounded-base text-sm px-4 py-2.5 focus:outline-none">Cancel</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+
+
+        <!-- Delete Card Modal -->
+
+
+        <div id="popup-modal" tabindex="-1"
+            class="hidden fixed inset-0 z-50 flex items-center justify-center bg-black/40">
+            <div class="relative p-4 w-full max-w-md max-h-full">
+                <div class="relative bg-gray-100 border border-default rounded-base shadow-sm p-4 md:p-6">
+                    <button type="button" onclick="closeDeleteModal()"
+                        class="absolute top-3 end-2.5 text-body bg-transparent hover:bg-neutral-tertiary hover:text-heading rounded-base text-sm w-9 h-9 ms-auto inline-flex justify-center items-center"
+                        data-modal-hide="popup-modal">
+                        <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24"
+                            height="24" fill="none" viewBox="0 0 24 24">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M6 18 17.94 6M18 18 6.06 6" />
+                        </svg>
+                        <span class="sr-only">Close modal</span>
+                    </button>
+                    <div class="p-4 md:p-5 text-center">
+                        <svg class="mx-auto mb-4 text-fg-disabled w-12 h-12" aria-hidden="true"
+                            xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M12 13V8m0 8h.01M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                        </svg>
+                        <h3 class="mb-6 text-body">Are you sure you want to delete this product from your account?</h3>
+                        <div class="flex items-center space-x-4 justify-center">
+                            <button data-modal-hide="popup-modal" type="button"
+                                class="text-white bg-red-600 box-border border border-transparent hover:bg-danger-strong focus:ring-4 focus:ring-danger-medium shadow-xs font-medium leading-5 rounded-base text-sm px-4 py-2.5 focus:outline-none">
+                                Yes, I'm sure
+                            </button>
+                            <button data-modal-hide="popup-modal" onclick="closeDeleteModal()" type="button"
+                                class="text-body bg-neutral-secondary-medium box-border border border-default-medium hover:bg-neutral-tertiary-medium hover:text-heading focus:ring-4 focus:ring-neutral-tertiary shadow-xs font-medium leading-5 rounded-base text-sm px-4 py-2.5 focus:outline-none">No,
+                                cancel</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
 
     </main>
     <div id="toast"
