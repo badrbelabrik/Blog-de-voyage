@@ -1,69 +1,69 @@
-function getCards(){
+function getCards() {
     return JSON.parse(localStorage.getItem("cards")) || []
 }
-function setCards(cards){
+function setCards(cards) {
     localStorage.setItem("cards", JSON.stringify(cards))
 }
 
-function createCard(){
-        
+function createCard() {
+
 }
 
 // Open card creation modal
-function openModal(){
+function openModal() {
     const modal = document.getElementById("crud-modal")
     modal.classList.remove("hidden")
 }
-function closeModal(){
+function closeModal() {
     const modal = document.getElementById("crud-modal")
     modal.classList.add("hidden")
 }
 
 // Open Edit Card Menu
-    // const editBtn = document.getElementById("openModal")
-    
-    // editBtn.addEventListener("click", ()=>{
-    //     const menu = document.getElementById("drop-menu")
-    //     menu.classList.toggle("hidden")
-    // })
-    
+// const editBtn = document.getElementById("openModal")
 
-function saveCard(){
+// editBtn.addEventListener("click", ()=>{
+//     const menu = document.getElementById("drop-menu")
+//     menu.classList.toggle("hidden")
+// })
+
+
+function saveCard() {
     const cards = getCards()
-    
-   const title = document.getElementById("inputTitle")
-   const author = document.getElementById("inputAuthor")
-   const location = document.getElementById("inputLocation")
-   const readingTime = document.getElementById("inputTime")
-   const category = document.getElementById("inputCategory")
-   const image = document.getElementById("inputImage")
-   const description = document.getElementById("inputDescription")
 
-   const newCard = {title:title.value,author:author.value,location:location.value,readingTime:readingTime.value,views:0,category:category.value,image:image.value,description:description.value}
-   cards.push(newCard)
-   setCards(cards)
-   showMessage("Card created successfully !!")
-   fillCardsContainer()
-   closeModal()
+    const title = document.getElementById("inputTitle")
+    const author = document.getElementById("inputAuthor")
+    const location = document.getElementById("inputLocation")
+    const readingTime = document.getElementById("inputTime")
+    const category = document.getElementById("inputCategory")
+    const image = document.getElementById("inputImage")
+    const description = document.getElementById("inputDescription")
+
+    const newCard = { title: title.value, author: author.value, location: location.value, readingTime: readingTime.value, views: 0, category: category.value, image: image.value, description: description.value }
+    cards.push(newCard)
+    setCards(cards)
+    showMessage("Card created successfully !!")
+    fillCardsContainer()
+    closeModal()
 
 }
 
 function showMessage(message, duration = 3000) {
-  const toast = document.getElementById("toast");
+    const toast = document.getElementById("toast");
 
-  toast.textContent = message;
-  toast.classList.remove("hidden");
+    toast.textContent = message;
+    toast.classList.remove("hidden");
 
-  setTimeout(() => {
-    toast.classList.add("hidden");
-  }, duration);
+    setTimeout(() => {
+        toast.classList.add("hidden");
+    }, duration);
 }
 
-function fillCardsContainer(){
+function fillCardsContainer() {
     const cardsContainer = document.getElementById("cardsContainer")
     const cards = getCards()
 
-    for (card of cards){
+    for (card of cards) {
         const cardDiv = document.createElement("div")
         cardDiv.className = "max-w-sm rounded-2xl items-center  object-cover bg-white shadow-lg my-2 md:w-md"
         cardDiv.innerHTML = `<a href="details.html">
@@ -95,20 +95,41 @@ function fillCardsContainer(){
                         </div>
 
                     </div>`
-        cardsContainer.appendChild(cardDiv)         
+        cardsContainer.appendChild(cardDiv)
     }
+
 }
 
-    const cardsContainer = document.getElementById("cardsContainer")
-    cardsContainer.addEventListener("click", function(){
-        if(click)
-    })
-    const btns = document.getElementsByClassName("menu-btn")
-    for(btn of btns){
-        btn.addEventListener("click", function(){
-            this.nextElementSibling.classList.toggle("hidden")
-        })
+const cardsContainer = document.getElementById("cardsContainer")
+cardsContainer.addEventListener("click", function (event) {
+    const menus = cardsContainer.getElementsByClassName("menu")
+
+    let currentElement = event.target
+    let found = false
+    while (currentElement !== cardsContainer) {
+        if (currentElement.classList.contains("menu-btn")) {
+            found = true
+            if (currentElement.nextElementSibling.classList.contains("hidden")) {
+                for (menu of menus) {
+                    menu.classList.add("hidden")
+                }
+                currentElement.nextElementSibling.classList.remove("hidden")
+            } else {
+                currentElement.nextElementSibling.classList.add("hidden")
+            }
+
+            break
+        } else {
+            currentElement = currentElement.parentElement
+        }
     }
+    if (!found) {
+        for (menu of menus) {
+            menu.classList.add("hidden")
+        }
+    }
+})
+
 
 
 
