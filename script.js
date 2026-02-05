@@ -18,8 +18,12 @@ function closeModal() {
     const modal = document.getElementById("crud-modal")
     modal.classList.add("hidden")
 }
-function closeDeleteModal(){
-    const modal = document.getElementById("popup-modal")
+function closeEditModal() {
+    const editModal = document.getElementById("edit-modal")
+    editModal.classList.add("hidden")
+}
+function closeDeleteModal() {
+    const modal = document.getElementById("delete-modal")
     modal.classList.add("hidden")
 }
 
@@ -46,14 +50,54 @@ function saveCard() {
     const newCard = { title: title.value, author: author.value, location: location.value, readingTime: readingTime.value, views: 0, category: category.value, image: image.value, description: description.value }
     cards.push(newCard)
     setCards(cards)
-    showMessage("Card created successfully !!")
     fillCardsContainer()
     closeModal()
+    showAddMessage("Card created successfully !!!")
+}
+
+function editCard(index){
+    const cards = getCards()
+    // Informations display in the form
+    document.getElementById("editTitle").value = cards[index].title
+    document.getElementById("editAuthor").value = cards[index].author
+    document.getElementById("editLocation").value = cards[index].location
+    document.getElementById("editTime").value = cards[index].readingTime
+    document.getElementById("editCategory").value = cards[index].category
+    document.getElementById("editImage").value = cards[index].image
+    document.getElementById("editDescription").value = cards[index].description
+
+    const saveBtn = document.getElementById("saveEditedCard")
+    saveBtn.addEventListener("click", function (e){
+        e.preventDefault()
+    // Save the last updated Informations
+    cards[index].title = document.getElementById("editTitle").value
+    cards[index].author = document.getElementById("editAuthor").value
+    cards[index].location = document.getElementById("editLocation").value
+    cards[index].readingTime = document.getElementById("editTime").value
+    cards[index].category = document.getElementById("editCategory").value
+    cards[index].image = document.getElementById("editImage").value
+    cards[index].description = document.getElementById("editDescription").value
+    setCards(cards)
+    showAddMessage("Card updated successfully !!!")
+    fillCardsContainer()
+    closeEditModal()
+    })
 
 }
 
-function showMessage(message, duration = 3000) {
-    const toast = document.getElementById("toast");
+
+function showAddMessage(message, duration = 5000) {
+    const toast = document.getElementById("add-message");
+
+    toast.textContent = message;
+    toast.classList.remove("hidden");
+
+    setTimeout(() => {
+        toast.classList.add("hidden");
+    }, duration);
+}
+function showDeleteMessage(message, duration = 5000) {
+    const toast = document.getElementById("delete-message");
 
     toast.textContent = message;
     toast.classList.remove("hidden");
@@ -65,11 +109,12 @@ function showMessage(message, duration = 3000) {
 
 function fillCardsContainer() {
     const cardsContainer = document.getElementById("cardsContainer")
+    cardsContainer.innerHTML = ""
     const cards = getCards()
 
     cards.forEach((card, index) => {
         const cardDiv = document.createElement("div")
-        cardDiv.className = "max-w-sm rounded-2xl items-center  object-cover bg-white shadow-lg my-2 md:w-md"
+        cardDiv.className = "card max-w-sm rounded-2xl items-center  object-cover bg-white shadow-lg my-2 md:w-md"
         cardDiv.innerHTML = `<a href="details.html">
                         <img src="${card.image}" alt="${card.title}" class="w-full h-48 rounded-t-2xl object-cover" />
                         <!-- Content -->
@@ -97,10 +142,8 @@ function fillCardsContainer() {
                                 </div>
                         </div>
                     </div>`
-                    cardDiv.dataset.index = index;
+        cardDiv.dataset.index = index;
         cardsContainer.appendChild(cardDiv)
-        console.log(index);
-        
     })
 }
 
@@ -119,17 +162,38 @@ cardsContainer.addEventListener("click", function (event) {
                     menu.classList.add("hidden")
                 }
                 currentElement.nextElementSibling.classList.remove("hidden")
-            } else{
+            } else {
                 currentElement.nextElementSibling.classList.add("hidden")
             }
             break
-        }  else if(currentElement.classList.contains("edit")){
-                // code to run
-                break
-        }  else if(currentElement.classList.contains("delete")){
-                const deleteModal = document.querySelector("#popup-modal")
+        } else if (currentElement.classList.contains("edit")) {
+            const editModal = document.querySelector("#edit-modal")
+            let editEl = currentElement.parentElement
+            while (editEl && !editEl.classList.contains("card")) {
+                editEl = editEl.parentElement
+            } if (!editEl) {
+                return
+            } else {
+                editModal.dataset.index = editEl.dataset.index;
+                editModal.classList.remove("hidden")
+                const index = editModal.dataset.index
+                console.log(index)
+                editCard(index)
+            }
+            break
+        } else if (currentElement.classList.contains("delete")) {
+            const deleteModal = document.querySelector("#delete-modal")
+            let delEl = currentElement.parentElement
+            while (delEl && !delEl.classList.contains("card")) {
+                delEl = delEl.parentElement
+            } if (!delEl) {
+                return
+            } else {
+                deleteModal.dataset.index = delEl.dataset.index;
                 deleteModal.classList.remove("hidden")
-                break
+            }
+
+            break
         }
         else {
             currentElement = currentElement.parentElement
@@ -141,10 +205,22 @@ cardsContainer.addEventListener("click", function (event) {
             menu.classList.add("hidden")
         }
     }
-
-
 })
 
+const deleteModal = document.getElementById("delete-modal")
+deleteModal.addEventListener("click", function (event) {
+    if (event.target.id === "deleteButton") {
+        const index = deleteModal.dataset.index
+        const cards = getCards()
+        cards.splice(index, 1)
+        setCards(cards)
+        fillCardsContainer()
+        closeDeleteModal()
+        showDeleteMessage("Card deleted successfully !!!")
+    } else {
+        return
+    }
+})
 
 
 
