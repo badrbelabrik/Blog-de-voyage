@@ -12,7 +12,6 @@
 </head>
 
 <body>
-    <div id="message" class="message-toast"></div>
     <header
         class="flex items-center justify-between px-4 md:px-8 py-3 bg-white border-b border-gray-200 sticky top-0 md:hidden">
         <button aria-label="Open navigation menu" class="p-2 hover:bg-gray-100 rounded-lg cursor-pointer md:hidden"
@@ -46,7 +45,7 @@
 
             <a class="flex gap-2 items-center">
                 <i class="fa-solid fa-heart text-3xl"></i>
-                <h1 class="font-bold">Notifications</h1>
+                <h1 class="font-bold">Favourites</h1>
             </a>
 
             <a href="profile.html" class="flex gap-2 items-center">
@@ -99,24 +98,24 @@
                     <button class="rounded-full bg-[#CCF3EA] inline-block p-2 hover:outline-1 cursor-pointer" data-cat="all">
                         All
                     </button>
-                    <button class="rounded-full inline-block p-2 outline-1 hover:bg-[#CCF3EA] cursor-pointer" data-cat="forest">
+                    <button class="rounded-full inline-block p-2 shadow-md hover:bg-[#CCF3EA] cursor-pointer" data-cat="forest">
                         Forest
                     </button>
-                    <button class="rounded-full inline-block p-2 outline-1 hover:bg-[#CCF3EA] cursor-pointer" data-cat="beach">
+                    <button class="rounded-full inline-block p-2 shadow-md hover:bg-[#CCF3EA] cursor-pointer" data-cat="beach">
                         Beach
                     </button>
-                    <button class="rounded-full inline-block p-2 outline-1 hover:bg-[#CCF3EA] cursor-pointer" data-cat="river">
+                    <button class="rounded-full inline-block p-2 shadow-md hover:bg-[#CCF3EA] cursor-pointer" data-cat="river">
                         River
                     </button>
-                    <button class="rounded-full inline-block p-2 outline-1 hover:bg-[#CCF3EA] cursor-pointer" data-cat="mountain">
+                    <button class="rounded-full inline-block p-2 shadow-md hover:bg-[#CCF3EA] cursor-pointer" data-cat="mountain">
                         Mountain
                     </button>
-                    <button class="rounded-full inline-block p-2 outline-1 hover:bg-[#CCF3EA] cursor-pointer" data-cat="desert">
+                    <button class="rounded-full inline-block p-2 shadow-md hover:bg-[#CCF3EA] cursor-pointer" data-cat="desert">
                         Desert
                     </button>
                 </div>
                 <button onclick="openModal()"
-                    class="bg-emerald-700 text-white text-center font-bold py-3 px-16 rounded-lg mt-4 hover:bg-emerald-700 transition-colors cursor-pointer">
+                    class="bg-emerald-700 text-white text-center drop-shadow-lg hover:bg-emerald-900 font-bold py-3 px-16 rounded-lg cursor-pointer">
                     <i class="fa-solid fa-plus"></i> Add Destination
                 </button>
 
@@ -428,12 +427,12 @@
 
 
     </main>
-    <div id="add-message"
+    <div id="message"
         class="hidden fixed top-10 right-8 -translate-x-1/2 bg-emerald-700 text-white px-6 py-3 rounded-lg shadow-lg z-50">
     </div>
-        <div id="delete-message"
+        <!-- <div id="delete-message"
         class="hidden fixed top-10 right-8 -translate-x-1/2 bg-red-600 text-white px-6 py-3 rounded-lg shadow-lg z-50">
-    </div>
+    </div> -->
     <!-- NAVBAR -->
     <div
         class="flex gap-6 h-16 px-4 justify-between items-center shadow-[0_-6px_12px_rgba(0,0,0,0.15)]  rounded-xl bg-white sticky bottom-0 md:hidden">

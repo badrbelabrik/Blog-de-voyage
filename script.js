@@ -97,9 +97,10 @@ function editCard(id){
 
 
 function showAddMessage(message, duration = 5000) {
-    const toast = document.getElementById("add-message");
+    const toast = document.getElementById("message");
 
     toast.textContent = message;
+    toast.classList.add("bg-emerald-700")
     toast.classList.remove("hidden");
 
     setTimeout(() => {
@@ -107,9 +108,10 @@ function showAddMessage(message, duration = 5000) {
     }, duration);
 }
 function showDeleteMessage(message, duration = 5000) {
-    const toast = document.getElementById("delete-message");
+    const toast = document.getElementById("message");
 
     toast.textContent = message;
+    toast.classList.add("bg-red-600")
     toast.classList.remove("hidden");
 
     setTimeout(() => {
@@ -219,9 +221,10 @@ cardsContainer.addEventListener("click", function (event) {
 const deleteModal = document.getElementById("delete-modal")
 deleteModal.addEventListener("click", function (event) {
     if (event.target.id === "deleteButton") {
-        const index = Number(deleteModal.dataset.index)
+        const cardId = Number(deleteModal.dataset.id)
         const cards = getCards()
-        const selectedCard = cards.findIndex(item => item.id === index)
+        const selectedCard = cards.findIndex(item => item.id === cardId)
+        console.log(selectedCard)
         cards.splice(selectedCard,1)
         setCards(cards)
         fillCardsContainer()
