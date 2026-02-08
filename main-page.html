@@ -92,25 +92,28 @@
                 </div>
             </div>
 
-            <div class="flex flex-col gap-2 md:items-center">
+            <div id="categories" class="flex flex-col gap-2 md:items-center">
                 <h1 class="items-center font-bold">What do you want to read?</h1>
 
                 <div class="flex gap-2 my-2">
-                    <div class="rounded-full bg-[#CCF3EA] inline-block p-2 hover:outline-1">
-                        <h2>All</h2>
-                    </div>
-                    <div class="rounded-full inline-block p-2 outline-1">
-                        <h3>Forest</h3>
-                    </div>
-                    <div class="rounded-full inline-block p-2 outline-1">
-                        <h3>Beach</h3>
-                    </div>
-                    <div class="rounded-full inline-block p-2 outline-1">
-                        <h3>River</h3>
-                    </div>
-                    <div class="rounded-full inline-block p-2 outline-1">
-                        <h3>Mountains</h3>
-                    </div>
+                    <button class="rounded-full bg-[#CCF3EA] inline-block p-2 hover:outline-1 cursor-pointer" data-cat="all">
+                        All
+                    </button>
+                    <button class="rounded-full inline-block p-2 outline-1 hover:bg-[#CCF3EA] cursor-pointer" data-cat="forest">
+                        Forest
+                    </button>
+                    <button class="rounded-full inline-block p-2 outline-1 hover:bg-[#CCF3EA] cursor-pointer" data-cat="beach">
+                        Beach
+                    </button>
+                    <button class="rounded-full inline-block p-2 outline-1 hover:bg-[#CCF3EA] cursor-pointer" data-cat="river">
+                        River
+                    </button>
+                    <button class="rounded-full inline-block p-2 outline-1 hover:bg-[#CCF3EA] cursor-pointer" data-cat="mountain">
+                        Mountain
+                    </button>
+                    <button class="rounded-full inline-block p-2 outline-1 hover:bg-[#CCF3EA] cursor-pointer" data-cat="desert">
+                        Desert
+                    </button>
                 </div>
                 <button onclick="openModal()"
                     class="bg-emerald-700 text-white text-center font-bold py-3 px-16 rounded-lg mt-4 hover:bg-emerald-700 transition-colors cursor-pointer">
@@ -232,11 +235,11 @@
                                 <select id="inputCategory"
                                     class="block w-full px-3 py-2.5 bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand px-3 py-2.5 shadow-xs placeholder:text-body">
                                     <option selected="">Select category</option>
-                                    <option value="Forests">Forest</option>
-                                    <option value="Beachs">Beach</option>
-                                    <option value="Rivers">River</option>
-                                    <option value="Mountains">Mountain</option>
-                                    <option value="Deserts">Desert</option>
+                                    <option value="forest">Forest</option>
+                                    <option value="beach">Beach</option>
+                                    <option value="river">River</option>
+                                    <option value="mountain">Mountain</option>
+                                    <option value="desert">Desert</option>
                                 </select>
                             </div>
                             <div class="col-span-2">
@@ -342,11 +345,11 @@
                                 <select id="editCategory"
                                     class="block w-full px-3 py-2.5 bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand px-3 py-2.5 shadow-xs placeholder:text-body">
                                     <option selected="">Select category</option>
-                                    <option value="Forests">Forest</option>
-                                    <option value="Beachs">Beach</option>
-                                    <option value="Rivers">River</option>
-                                    <option value="Mountains">Mountain</option>
-                                    <option value="Deserts">Desert</option>
+                                    <option value="forest">Forest</option>
+                                    <option value="beach">Beach</option>
+                                    <option value="river">River</option>
+                                    <option value="mountain">Mountain</option>
+                                    <option value="desert">Desert</option>
                                 </select>
                             </div>
                             <div class="col-span-2">

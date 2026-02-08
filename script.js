@@ -47,36 +47,46 @@ function saveCard() {
     const image = document.getElementById("inputImage")
     const description = document.getElementById("inputDescription")
 
-    const newCard = { title: title.value, author: author.value, location: location.value, readingTime: readingTime.value, views: 0, category: category.value, image: image.value, description: description.value }
+    let newId = cards.length > 0 ? cards[cards.length - 1].id + 1 : 1;
+    const newCard = {id:newId,title: title.value, author: author.value, location: location.value, readingTime: readingTime.value, views: 0, category: category.value, image: image.value, description: description.value }
     cards.push(newCard)
     setCards(cards)
     fillCardsContainer()
     closeModal()
     showAddMessage("Card created successfully !!!")
+    title.value = ""
+    author.value = ""
+    location.value = ""
+    readingTime.value = ""
+    category.value = ""
+    image.value = ""
+    description.value = ""
 }
 
-function editCard(index){
+function editCard(id){
     const cards = getCards()
+    const currentCard = cards.find(item => item.id === id)
+    console.log(currentCard)
     // Informations display in the form
-    document.getElementById("editTitle").value = cards[index].title
-    document.getElementById("editAuthor").value = cards[index].author
-    document.getElementById("editLocation").value = cards[index].location
-    document.getElementById("editTime").value = cards[index].readingTime
-    document.getElementById("editCategory").value = cards[index].category
-    document.getElementById("editImage").value = cards[index].image
-    document.getElementById("editDescription").value = cards[index].description
+    document.getElementById("editTitle").value = currentCard.title
+    document.getElementById("editAuthor").value = currentCard.author
+    document.getElementById("editLocation").value = currentCard.location
+    document.getElementById("editTime").value = currentCard.readingTime
+    document.getElementById("editCategory").value = currentCard.category
+    document.getElementById("editImage").value = currentCard.image
+    document.getElementById("editDescription").value = currentCard.description
 
     const saveBtn = document.getElementById("saveEditedCard")
     saveBtn.addEventListener("click", function (e){
         e.preventDefault()
     // Save the last updated Informations
-    cards[index].title = document.getElementById("editTitle").value
-    cards[index].author = document.getElementById("editAuthor").value
-    cards[index].location = document.getElementById("editLocation").value
-    cards[index].readingTime = document.getElementById("editTime").value
-    cards[index].category = document.getElementById("editCategory").value
-    cards[index].image = document.getElementById("editImage").value
-    cards[index].description = document.getElementById("editDescription").value
+    currentCard.title = document.getElementById("editTitle").value
+    currentCard.author = document.getElementById("editAuthor").value
+    currentCard.location = document.getElementById("editLocation").value
+    currentCard.readingTime = document.getElementById("editTime").value
+    currentCard.category = document.getElementById("editCategory").value
+    currentCard.image = document.getElementById("editImage").value
+    currentCard.description = document.getElementById("editDescription").value
     setCards(cards)
     showAddMessage("Card updated successfully !!!")
     fillCardsContainer()
@@ -112,7 +122,7 @@ function fillCardsContainer() {
     cardsContainer.innerHTML = ""
     const cards = getCards()
 
-    cards.forEach((card, index) => {
+    for(card of cards) {
         const cardDiv = document.createElement("div")
         cardDiv.className = "card max-w-sm rounded-2xl items-center  object-cover bg-white shadow-lg my-2 md:w-md"
         cardDiv.innerHTML = `<a href="details.html">
@@ -142,9 +152,9 @@ function fillCardsContainer() {
                                 </div>
                         </div>
                     </div>`
-        cardDiv.dataset.index = index;
+        cardDiv.dataset.id = card.id;
         cardsContainer.appendChild(cardDiv)
-    })
+    }
 }
 
 // Drop down menus function
@@ -174,11 +184,10 @@ cardsContainer.addEventListener("click", function (event) {
             } if (!editEl) {
                 return
             } else {
-                editModal.dataset.index = editEl.dataset.index;
+                editModal.dataset.id = editEl.dataset.id;
                 editModal.classList.remove("hidden")
-                const index = editModal.dataset.index
-                console.log(index)
-                editCard(index)
+                const id = Number(editModal.dataset.id)
+                editCard(id)
             }
             break
         } else if (currentElement.classList.contains("delete")) {
@@ -189,7 +198,7 @@ cardsContainer.addEventListener("click", function (event) {
             } if (!delEl) {
                 return
             } else {
-                deleteModal.dataset.index = delEl.dataset.index;
+                deleteModal.dataset.id = delEl.dataset.id;
                 deleteModal.classList.remove("hidden")
             }
 
@@ -206,13 +215,14 @@ cardsContainer.addEventListener("click", function (event) {
         }
     }
 })
-
+// Delete card function
 const deleteModal = document.getElementById("delete-modal")
 deleteModal.addEventListener("click", function (event) {
     if (event.target.id === "deleteButton") {
-        const index = deleteModal.dataset.index
+        const index = Number(deleteModal.dataset.index)
         const cards = getCards()
-        cards.splice(index, 1)
+        const selectedCard = cards.findIndex(item => item.id === index)
+        cards.splice(selectedCard,1)
         setCards(cards)
         fillCardsContainer()
         closeDeleteModal()
@@ -222,7 +232,55 @@ deleteModal.addEventListener("click", function (event) {
     }
 })
 
+// Filter by category
+const categories = document.getElementById("categories")
+categories.addEventListener("click", function(event){
+    if(event.target.matches("button[data-cat]")){
+        const filter = event.target.dataset.cat
+        const cardsContainer = document.getElementById("cardsContainer")
+        if(filter === "all"){
+            fillCardsContainer()
+        } else{
+                    cardsContainer.innerHTML = ""
+        const cards = getCards()
+        const filteredCards = cards.filter(item => item.category === filter)
+        for(card of filteredCards){
+            const cardDiv = document.createElement("div")
+        cardDiv.className = "card max-w-sm rounded-2xl items-center  object-cover bg-white shadow-lg my-2 md:w-md"
+        cardDiv.innerHTML = `<a href="details.html">
+                        <img src="${card.image}" alt="${card.title}" class="w-full h-48 rounded-t-2xl object-cover" />
+                        <!-- Content -->
+                        <div class="p-4">
+                            <h2 class="font-bold text-lg">${card.title}</h2>
+                            <p class="text-sm text-gray-500">by ${card.author}</p>                      
+                    </a>
+                    <div class="flex justify-between">
+                        <div class="flex items-center gap-4 text-sm text-gray-500 mt-2">
+                            <div class="flex items-center gap-1">
+                                <i class="fa-solid fa-location-crosshairs"></i> <span>${card.location}</span>
+                            </div>
+                            <div class="flex items-center gap-1">
+                                <i class="fa-regular fa-clock"></i> <span>${card.readingTime} min</span>
+                            </div>
+                            <div class="flex items-center gap-1">
+                                <i class="fa-regular fa-eye"></i> <span>${card.views}</span>
+                            </div>
+                        </div>
+                        <div class="relative">
+                            <button class="menu-btn rounded-full size-5 cursor-pointer"> ⋮ </button>
+                                <div class="menu hidden absolute right-0 bottom-full mb-2 md:bottom-auto md:top-full md:mt-2 md:mb-0 w-28 bg-white rounded-lg shadow-lg z-50">
+                                    <button class="edit block w-full text-left px-3 py-2 rounded-t-lg hover:bg-gray-100">Edit</button>
+                                    <button class="delete block w-full text-left px-3 py-2 rounded-b-lg hover:bg-gray-100 text-red-500">Delete</button>
+                                </div>
+                        </div>
+                    </div>`
+        cardDiv.dataset.id = card.id;
+        cardsContainer.appendChild(cardDiv)
+        }
+        }
 
+    }
+})
 
 document.addEventListener("DOMContentLoaded", () => {
     fillCardsContainer()
